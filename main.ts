@@ -9,21 +9,20 @@
     odebrané množství "energie":
     3500 * (600 / 3600) === 3500 * (1/6) === 583,333W
 */
+const cena: number = 6.5
+let kwh: number = 0;
 type Odber = {
-    cas: number, //čas je v sekundách
-    spotreba: number //spotřeba ve watech za hodinu
+    cas: number,//sekundy
+    prikon: number,//wat
 }
-const cena: number = 6.70; // Kč / kWh
 let data: Array<Odber> = [
-    { cas: 600, spotreba: 3500 },
-    { cas: 120, spotreba: 0 },
-    { cas: 300, spotreba: 1700 }, // data[2].cas
-    { cas: 60, spotreba: 0 },
-    { cas: 800, spotreba: 1500 },
+    { cas: 600, prikon: 3500 },
+    { cas: 120, prikon: 0 },
+    { cas: 300, prikon: 1700 },
+    { cas: 60, prikon: 0 },
+    { cas: 800, prikon: 100 },
 ]
-
-for (const peceme of data){
-    console.logValue("čas: ", peceme.cas);
-    console.logValue("spotřeba: ", peceme.spotreba);
-    console.logValue("spotřebováno: ", peceme.spotreba / 3600 * peceme.cas);
-}
+for (let i of data) {
+    kwh += (i.cas / 3600) * (i.prikon / 1000)
+} console.log(kwh * cena)//cena
+console.log(kwh / 5)//pruměrný odběr 
